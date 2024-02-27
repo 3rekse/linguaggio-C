@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define ARRAY_SIZE 100
-#define STRING_LENGTH 10
+#define MAX_STRING_LENGTH 10
 
 char* arrStr[ARRAY_SIZE];
 
@@ -117,11 +117,13 @@ void initRandArrayStr(char* arr[], int size) {
 
     // Allocate and fill the array with random strings
     for (int i = 0; i < size; i++) {
-        arr[i] = malloc(STRING_LENGTH + 1);  // Allocate space for the string
-        for (int j = 0; j < STRING_LENGTH; j++) {
+        int strlng= rand() % MAX_STRING_LENGTH;
+        if (strlng==0) strlng=1;
+        arr[i] = malloc( strlng + 1);  // Allocate space for the string
+        for (int j = 0; j < strlng; j++) {
             arr[i][j] = 'a' + rand() % 26;  // Generate a random lowercase letter
         }
-        arr[i][STRING_LENGTH] = '\0';  // Null-terminate the string
+        arr[i][strlng] = '\0';  // Null-terminate the string
     }
 }
 
